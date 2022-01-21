@@ -83,6 +83,12 @@ function get_os_release() {
         version_ge "7.0" && OS_RELEASE=7 && return
         ;;
     esac
+  elif [[ "${OS_ARCH}x" == "loongarch64x" ]]; then
+    case "$ID" in
+      loongnix-server)
+        version_ge "8.0" && compat_centos8 && return
+        ;;
+    esac
   fi
   not_supported && return 1 
 }
